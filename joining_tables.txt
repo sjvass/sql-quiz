@@ -1,0 +1,75 @@
+SELECT 
+    orders.id, 
+    orders.customer_id,
+    orders.status,
+    orders.salesperson_id,
+    orders.shipto_state,
+    orders.subtotal,
+    orders.tax,
+    orders.order_total,
+    customers.id,
+    customers.email,
+    customers.first_name,
+    customers.last_name,
+    customers.dob 
+FROM orders 
+
+JOIN customers 
+ON orders.customer_id = customers.id 
+
+WHERE 
+    customers.email='pclark74@gmail.com';
+
+
+result (no where):
+  id   | customer_id |      status      | salesperson_id | shipto_state | subtotal |   tax    | order_total |  id   |          email          | first_name | last_name  |    dob     
+-------+-------------+------------------+----------------+--------------+----------+----------+-------------+-------+-------------------------+------------+------------+------------
+     1 |         199 | Canceled         |             16 | TN           |  1178.50 |    70.71 |     1251.88 |   199 | krice31@gmail.com       | Karen      | Rice       | 1972-03-14 
+     2 |         741 | Processing       |            235 | WY           |     5.00 |     0.30 |       11.39 |   741 | mjohnston64@gmail.com   | Marie      | Johnston   | 1965-07-20 
+     3 |         364 | Delivered        |            194 | TX           |     8.00 |     0.48 |       11.30 |   364 | jmontgomery11@gmail.com | Joyce      | Montgomery | 1972-04-04 
+     4 |          59 | Out for Delivery |                | MT           |    46.25 |     2.78 |       68.72 |    59 | rcollins56@gmail.com    | Robin      | Collins    | 1976-12-15 
+     5 |         341 | New              |            137 | CA           |    45.75 |     2.75 |       51.13 |   341 | plopez10@gmail.com      | Pamela     | Lopez      | 1968-11-06 
+     6 |         167 | Out for Delivery |                | SD           |    44.00 |     2.64 |       54.09 |   167 | npatterson20@gmail.com  | Norma      | Patterson  | 1988-12-31 
+     7 |         153 | Delivered        |            241 | ND           |   203.00 |    12.18 |      230.64 |   153 | ecooper1@gmail.com      | Evelyn     | Cooper     | 1979-05-08 
+     8 |         312 | New              |                | KY           |    15.00 |     0.90 |       19.09 |   312 | dbarnes5@gmail.com      | Dorothy    | Barnes     | 1985-08-12 
+     9 |         647 | New              |            103 | CO           |    73.75 |     4.43 |       93.05 |   647 | lpatterson28@gmail.com  | Laura      | Patterson  | 1974-10-10 
+    10 |         301 | Canceled         |             68 | AK           |    15.00 |     0.90 |       23.99 |   301 | lroberts73@gmail.com    | Louise     | Roberts    | 1964-10-11 
+    11 |         526 | Out for Delivery |                | MD           |    68.75 |     4.13 |       88.29 |   526 | rrice41@gmail.com       | Rachel     | Rice       | 1967-04-21 
+    12 |         591 | Out for Delivery |             67 | SD           |     6.00 |     0.36 |       15.04 |   591 | aking82@gmail.com       | Andrea     | King       | 1976-06-11 
+    13 |         263 | Delivered        |            177 | SC           |   803.75 |    48.23 |      864.85 |   263 | kscott23@gmail.com      | Kelly      | Scott      | 1981-08-31 
+    14 |         934 | Delivered        |            201 | IA           |   258.50 |    15.51 |      292.28 |   934 | jmorgan83@gmail.com     | Julia      | Morgan     | 1980-08-03 
+    15 |         787 | Delivered        |            245 | CA           |  1274.50 |    76.47 |     1357.75 |   787 | ccruz49@gmail.com       | Cheryl     | Cruz       | 1986-11-15 
+    16 |         241 | Canceled         |            203 | MS           |    75.75 |     4.55 |       84.71 |   241 | radams73@gmail.com      | Ruby       | Adams      | 1967-08-21 
+    17 |         104 | Out for Delivery |                | WV           |    49.75 |     2.99 |       66.16 |   104 | cross13@gmail.com       | Carol      | Ross       | 1987-10-15 
+    18 |         498 | Canceled         |            188 | NV           |   218.50 |    13.11 |      235.38 |   498 | revans27@gmail.com      | Robin      | Evans      | 1976-08-24 
+    19 |         889 | Processing       |             20 | WI           |   115.00 |     6.90 |      125.73 |   889 | jbishop33@gmail.com     | Joyce      | Bishop     | 1977-12-02 
+    20 |         462 | Canceled         |                | AR           |   261.66 |    15.70 |      287.60 |   462 | creynolds82@gmail.com   | Carolyn    | Reynolds   | 1979-02-18 
+
+
+
+
+
+    \d orders
+
+         Column     |         Type          | Modifiers 
+    ----------------+-----------------------+-----------
+     id             | integer               | not null  
+     customer_id    | integer               | not null  
+     status         | character varying(16) | not null  
+     salesperson_id | integer               |           
+     shipto_state   | character varying(35) | not null  
+     subtotal       | numeric(10,2)         | not null  
+     tax            | numeric(10,2)         | not null  
+     order_total    | numeric(10,2)         | not null  
+
+
+     SQL [23]> \d customers
+
+        Column   |          Type          | Modifiers 
+     ------------+------------------------+-----------
+      id         | integer                | not null  
+      email      | character varying(120) | not null  
+      first_name | character varying(30)  | not null  
+      last_name  | character varying(30)  | not null  
+      dob        | date                   | not null  
+     (5 rows)
